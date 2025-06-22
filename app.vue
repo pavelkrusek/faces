@@ -1,6 +1,8 @@
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <WorldMap />
   </div>
 </template>
+<script setup lang="ts">
+import WorldMap from '~/components/WorldMap.vue'
+</script>
