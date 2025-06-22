@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full h-screen">
     <div ref="mapRef" class="w-full h-full z-0" />
-    
+
     <h1
       class="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 bg-black bg-opacity-50 backdrop-blur-sm rounded-md p-2 shadow-xl text-white font-bold text-center text-2xl sm:text-3xl"
     >
@@ -17,6 +17,8 @@
       @hide="showGallery = false"
     />
   </div>
+  <Analytics />
+  <SpeedInsights />
 </template>
 
 <script setup lang="ts">
@@ -25,6 +27,8 @@ import type { Map as LeafletMap, Marker } from 'leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { usePeopleStore } from '~/stores/people'
+import { Analytics } from '@vercel/analytics/nuxt'
+import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 
 const mapRef = ref<HTMLDivElement | null>(null)
 const store = usePeopleStore()

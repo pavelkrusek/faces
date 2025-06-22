@@ -1,0 +1,7 @@
+*.png   binary -diff
+*.jpg   binary -diff
+*.jpeg  binary -diff
+*.gif   binary -diff
+*.svg   binary -diff
+*.avif  binary -diff
+*.webp  binary -diff
