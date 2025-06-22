@@ -1,11 +1,22 @@
 <template>
-  <div ref="mapRef" class="w-full h-screen" />
-  <VueEasyLightbox
-    :visible="showGallery"
-    :imgs="galleryImages"
-    :index="galleryIndex"
-    @hide="showGallery = false"
-  />
+  <div class="relative w-full h-screen">
+    <div ref="mapRef" class="w-full h-full z-0" />
+    
+    <h1
+      class="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 bg-black bg-opacity-50 backdrop-blur-sm rounded-md p-2 shadow-xl text-white font-bold text-center text-2xl sm:text-3xl"
+    >
+      Faces of Odense:<br >
+      A Global Community in 43 Portraits
+    </h1>
+
+    <VueEasyLightbox
+      :visible="showGallery"
+      :imgs="galleryImages"
+      :index="galleryIndex"
+      :loop="true"
+      @hide="showGallery = false"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -85,5 +96,11 @@ onMounted(async () => {
   text-align: center !important;
   color: #f00 !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75) !important;
+}
+
+@media (max-width: 640px) {
+  :deep(.leaflet-control-zoom) {
+    display: none !important;
+  }
 }
 </style>
