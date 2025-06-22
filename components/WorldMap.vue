@@ -1,5 +1,11 @@
 <template>
   <div ref="mapRef" class="w-full h-screen" />
+  <VueEasyLightbox
+    :visible="showGallery"
+    :imgs="galleryImages"
+    :index="galleryIndex"
+    @hide="showGallery = false"
+  />
 </template>
 
 <script setup lang="ts">
@@ -11,6 +17,13 @@ import { usePeopleStore } from '~/stores/people'
 
 const mapRef = ref<HTMLDivElement | null>(null)
 const store = usePeopleStore()
+
+const nuxtApp = useNuxtApp()
+const imageMap = nuxtApp.$imageMap as Record<string, string[]>
+
+const showGallery = ref(false)
+const galleryImages = ref<{ src: string; title?: string }[]>([])
+const galleryIndex = ref(0)
 
 delete (L.Icon.Default.prototype as any)._getIconUrl
 
@@ -31,7 +44,7 @@ onMounted(async () => {
   const bounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180))
 
   const map: LeafletMap = L.map(mapRef.value, {
-    center: [50.0755, 14.4378],
+    center: [20, 0],
     zoom: 3,
     minZoom: 3,
     maxZoom: 10,
@@ -51,19 +64,26 @@ onMounted(async () => {
   await store.fetchPeople()
   store.people.forEach((person) => {
     const marker: Marker = L.marker([person.lat, person.lng]).addTo(map)
-    marker.bindPopup(`
-      <div class="text-center">
-        <img
-          src="${person.city}"
-          alt="${person.name}"
-          class="w-20 h-20 rounded-full mx-auto mb-2"
-        />
-        <h3 class="text-lg font-semibold">${person.name}</h3>
-        <p class="text-sm text-gray-200">${person.bio}</p>
-      </div>
-    `)
+    marker.on('click', () => {
+      const urls = imageMap[person.id] || []
+      galleryImages.value = urls.map((url) => ({
+        src: url,
+        title: `${person.name} — ${person.city}, ${person.country}`,
+      }))
+      galleryIndex.value = 0
+      showGallery.value = true
+    })
   })
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+:deep(.vel-img-title) {
+  font-size: 1.25rem !important;
+  line-height: 1.5 !important;
+  padding: 0.5rem 1rem !important;
+  text-align: center !important;
+  color: #f00 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75) !important;
+}
+</style>

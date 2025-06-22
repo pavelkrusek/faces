@@ -6,11 +6,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css', 'leaflet/dist/leaflet.css'],
+  plugins: ['~/plugins/imageMap.js'],
   vite: {
     plugins: [tailwindcss()],
   },
 
   modules: [
+    'nuxt-easy-lightbox',
     '@pinia/nuxt',
     '@nuxt/fonts',
     '@nuxt/icon',
@@ -19,7 +21,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
   ],
-
+  
   ssr: false,
 
   app: {
