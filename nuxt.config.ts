@@ -21,12 +21,12 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
   ],
-  
+
   ssr: false,
 
   app: {
     head: {
-      title: 'Faces – World Portrait Map',
+      title: 'Faces of Odense: A Global Community in 43 Portraits',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
