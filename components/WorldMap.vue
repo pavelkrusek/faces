@@ -17,33 +17,6 @@
       :swipe-tolerance="40"
       @hide="showGallery = false"
     >
-      <!--      <template #prev-btn="{ prev }">-->
-      <!--        <button-->
-      <!--          class="vel-prev-btn"-->
-      <!--          @click="-->
-      <!--            () => {-->
-      <!--              stopAutoplay()-->
-      <!--              prev()-->
-      <!--            }-->
-      <!--          "-->
-      <!--        >-->
-      <!--          ‹-->
-      <!--        </button>-->
-      <!--      </template>-->
-
-      <!--      <template #next-btn="{ next }">-->
-      <!--        <button-->
-      <!--          class="vel-next-btn"-->
-      <!--          @click="-->
-      <!--            () => {-->
-      <!--              stopAutoplay()-->
-      <!--              next()-->
-      <!--            }-->
-      <!--          "-->
-      <!--        >-->
-      <!--          ›-->
-      <!--        </button>-->
-      <!--      </template>-->
       <template #toolbar />
     </VueEasyLightbox>
   </div>
@@ -70,7 +43,7 @@ const showGallery = ref(false)
 const galleryImages = ref<{ src: string; title?: string }[]>([])
 const galleryIndex = ref(0)
 
-let autoplayTimer: ReturnType<typeof setInterval> | null = null
+const autoplayTimer: ReturnType<typeof setInterval> | null = null
 
 delete (L.Icon.Default.prototype as any)._getIconUrl
 
@@ -80,29 +53,6 @@ L.Icon.Default.mergeOptions({
   iconUrl:
     'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-})
-
-const startAutoplay = () => {
-  stopAutoplay()
-  autoplayTimer = setInterval(() => {
-    galleryIndex.value = (galleryIndex.value + 1) % galleryImages.value.length
-  }, 3000)
-}
-
-const stopAutoplay = () => {
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer)
-    autoplayTimer = null
-  }
-}
-
-// watch(showGallery, (visible) => {
-//   if (visible) startAutoplay()
-//   else stopAutoplay()
-// })
-
-onBeforeUnmount(() => {
-  stopAutoplay()
 })
 
 onMounted(async () => {
