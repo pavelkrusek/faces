@@ -5,8 +5,7 @@
     <h1
       class="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 bg-black bg-opacity-50 backdrop-blur-sm rounded-md p-2 shadow-xl text-white font-bold text-center text-2xl sm:text-3xl"
     >
-      Faces of Odense:<br >
-      A Global Community in 43 Portraits
+      43 Portraits of Odense
     </h1>
 
     <VueEasyLightbox
