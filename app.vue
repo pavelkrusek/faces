@@ -1,8 +1,14 @@
+<!--<template>-->
+<!--  <div>-->
+<!--    <WorldMap />-->
+<!--  </div>-->
+<!--</template>-->
+<!--<script setup lang="ts">-->
+<!--import WorldMap from '~/components/WorldMap.vue'-->
+<!--</script>-->
+
 <template>
-  <div>
-    <WorldMap />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
-<script setup lang="ts">
-import WorldMap from '~/components/WorldMap.vue'
-</script>

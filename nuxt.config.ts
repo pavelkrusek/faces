@@ -13,6 +13,7 @@ export default defineNuxtConfig({
 
   modules: [
     'nuxt-easy-lightbox',
+    '@nuxt/devtools',
     '@pinia/nuxt',
     '@nuxt/fonts',
     '@nuxt/icon',

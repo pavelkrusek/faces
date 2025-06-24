@@ -8,17 +8,17 @@
       43 Portraits of Odense
     </h1>
 
-    <VueEasyLightbox
-      :visible="showGallery"
-      :imgs="galleryImages"
-      :index="galleryIndex"
-      :loop="true"
-      :move-disabled="true"
-      :swipe-tolerance="40"
-      @hide="showGallery = false"
-    >
-      <template #toolbar />
-    </VueEasyLightbox>
+    <!--    <VueEasyLightbox-->
+    <!--      :visible="showGallery"-->
+    <!--      :imgs="galleryImages"-->
+    <!--      :index="galleryIndex"-->
+    <!--      :loop="true"-->
+    <!--      :move-disabled="true"-->
+    <!--      :swipe-tolerance="40"-->
+    <!--      @hide="showGallery = false"-->
+    <!--    >-->
+    <!--      <template #toolbar />-->
+    <!--    </VueEasyLightbox>-->
   </div>
   <Analytics />
   <SpeedInsights />
@@ -36,14 +36,12 @@ import { SpeedInsights } from '@vercel/speed-insights/nuxt'
 const mapRef = ref<HTMLDivElement | null>(null)
 const store = usePeopleStore()
 
-const nuxtApp = useNuxtApp()
-const imageMap = nuxtApp.$imageMap as Record<string, string[]>
+// const nuxtApp = useNuxtApp()
+// const imageMap = nuxtApp.$imageMap as Record<string, string[]>
 
-const showGallery = ref(false)
-const galleryImages = ref<{ src: string; title?: string }[]>([])
-const galleryIndex = ref(0)
-
-const autoplayTimer: ReturnType<typeof setInterval> | null = null
+// const showGallery = ref(false)
+// const galleryImages = ref<{ src: string; title?: string }[]>([])
+// const galleryIndex = ref(0)
 
 delete (L.Icon.Default.prototype as any)._getIconUrl
 
@@ -85,31 +83,31 @@ onMounted(async () => {
   store.people.forEach((person) => {
     const marker: Marker = L.marker([person.lat, person.lng]).addTo(map)
     marker.on('click', () => {
-      const urls = imageMap[person.id] || []
-      galleryImages.value = urls.map((url) => ({
-        src: url,
-        title: `${person.name} — ${person.city}, ${person.country}`,
-      }))
-      galleryIndex.value = 0
-      showGallery.value = true
+      // const urls = imageMap[person.id] || []
+      // galleryImages.value = urls.map((url) => ({
+      //   src: url,
+      //   title: `${person.name} — ${person.city}, ${person.country}`,
+      // }))
+      // galleryIndex.value = 0
+      // showGallery.value = true
     })
   })
 })
 </script>
 
 <style scoped>
-:deep(.vel-img-title) {
-  font-size: 1.25rem !important;
-  line-height: 1.5 !important;
-  padding: 0.5rem 1rem !important;
-  text-align: center !important;
-  color: #f00 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75) !important;
-}
-
 @media (max-width: 640px) {
   :deep(.leaflet-control-zoom) {
     display: none !important;
   }
 }
 </style>
+
+<!--:deep(.vel-img-title) {-->
+<!--  font-size: 1.25rem !important;-->
+<!--  line-height: 1.5 !important;-->
+<!--  padding: 0.5rem 1rem !important;-->
+<!--  text-align: center !important;-->
+<!--  color: #f00 !important;-->
+<!--  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75) !important;-->
+<!--}-->
