@@ -12,30 +12,36 @@ const person = store.people.find((p) => p.id === id)
 if (!person) router.replace('/')
 
 const galleryImages = store.getImages(person as Person)
+const elements = galleryImages.map((img) => ({
+  href: img.src,
+  title: img.title,
+}))
+
+onMounted(() => {
+  const { $glightbox } = useNuxtApp()
+  const lb = $glightbox({
+    elements,
+    loop: true,
+    touchNavigation: true,
+    slideEffect: 'fade',
+    closeOnOutsideClick: true,
+    dragToleranceY: 0,
+  })
+
+  lb.on('open', () => {
+    ;(document.activeElement as HTMLElement)?.blur()
+  })
+
+  lb.on('close', () => {
+    router.push('/')
+  })
+
+  lb.open()
+})
 </script>
 
 <template>
-  <div class="pointer-events-auto">
-    <VueEasyLightbox
-      :visible="true"
-      :imgs="galleryImages"
-      :loop="true"
-      :move-disabled="true"
-      :swipe-tolerance="40"
-      @hide="router.back()"
-    >
-      <template #toolbar />
-    </VueEasyLightbox>
-  </div>
+  <div class="pointer-events-auto" />
 </template>
 
-<style scoped>
-:deep(.vel-img-title) {
-  font-size: 1.25rem !important;
-  line-height: 1.5 !important;
-  padding: 0.5rem 1rem !important;
-  text-align: center !important;
-  color: #f00 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75) !important;
-}
-</style>
+<style scoped></style>

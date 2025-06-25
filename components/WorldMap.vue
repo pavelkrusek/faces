@@ -8,8 +8,6 @@
       43 Portraits of Odense
     </h1>
   </div>
-  <!--  <Analytics />-->
-  <!--  <SpeedInsights />-->
 </template>
 
 <script setup lang="ts">
@@ -62,9 +60,8 @@ onMounted(async () => {
   store.people.forEach((person) => {
     const marker: Marker = L.marker([person.lat, person.lng]).addTo(map)
     marker.on('click', () => {
-      const canonical = `${person.id}-${slugify(person.name, { lower: true, strict: true })}`
-      console.log(canonical)
-      navigateTo(`/personer/${canonical}`)
+      const slug = `${person.id}-${slugify(person.name, { lower: true, strict: true })}`
+      navigateTo(`/personer/${slug}`)
     })
   })
 })
