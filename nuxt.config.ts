@@ -6,7 +6,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css', 'leaflet/dist/leaflet.css'],
-  plugins: ['~/plugins/imageMap.js'],
   vite: {
     plugins: [tailwindcss()],
   },
@@ -23,7 +22,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
 
-  ssr: false,
+  ssr: true,
 
   app: {
     head: {
