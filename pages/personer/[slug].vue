@@ -11,7 +11,7 @@ const person = store.people.find((p) => p.id === id)
 
 if (!person) router.replace('/')
 
-const galleryImages = store.getImages(id)
+const galleryImages = store.getImages(person as Person)
 </script>
 
 <template>

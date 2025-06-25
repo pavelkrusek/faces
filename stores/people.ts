@@ -31,9 +31,10 @@ export const usePeopleStore = defineStore('peopleStore', () => {
     return m
   })()
 
-  const getImages = (id: number) => {
-    return (imageMap[id] || []).map((src) => ({
+  const getImages = (person: Person) => {
+    return (imageMap[person.id] || []).map((src) => ({
       src,
+      title: `${person.name} — ${person.city}, ${person.country}`,
     }))
   }
 
