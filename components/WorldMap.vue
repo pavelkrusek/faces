@@ -1,12 +1,6 @@
 <template>
-  <div class="relative w-full h-screen">
+  <div class="relative w-full h-full">
     <div ref="mapRef" class="w-full h-full z-0" />
-
-    <h1
-      class="absolute top-4 left-1/2 transform -translate-x-1/2 z-20 bg-black bg-opacity-50 backdrop-blur-sm rounded-md p-2 shadow-xl text-white font-bold text-center text-2xl sm:text-3xl"
-    >
-      43 Portraits of Odense
-    </h1>
   </div>
 </template>
 
