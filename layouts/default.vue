@@ -1,16 +1,19 @@
 <script setup lang="ts">
 const links = [
   { name: 'Home', to: '/' },
-  { name: 'About', to: '/about' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'About', to: '/' },
+  { name: 'Contact', to: '/' },
 ]
 </script>
 
 <template>
   <div class="flex flex-col h-screen">
-    >
-    <header class="h-10">
-      <NavBar logo-src="/logo.svg" project-name="My Project" :links="links" />
+    <header class="flex-none h-14">
+      <NavBar
+        logo-src="/logo.svg"
+        project-name="43 Portraits of Odense"
+        :links="links"
+      />
     </header>
 
     <main class="flex-1 relative">
@@ -23,6 +26,5 @@ const links = [
     </main>
   </div>
 </template>
-<!--43 Portraits of Odense-->
 
 <style scoped />
