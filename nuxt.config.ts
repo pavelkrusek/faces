@@ -10,13 +10,7 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: [
-    '@nuxt/devtools',
-    '@pinia/nuxt',
-    '@nuxt/scripts',
-    '@nuxt/ui',
-    '@nuxt/eslint',
-  ],
+  modules: ['@nuxt/devtools', '@pinia/nuxt', '@nuxt/scripts', '@nuxt/eslint'],
 
   runtimeConfig: {
     public: { hubspotId: process.env.HUBSPOT_ID },
