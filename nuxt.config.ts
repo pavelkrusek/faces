@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import tailwindcss from '@tailwindcss/vite'
+import peopleData from './data/people.json'
+import slugify from 'slugify'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
@@ -17,6 +19,20 @@ export default defineNuxtConfig({
   },
 
   ssr: true,
+
+  routeRules: {
+    '/': { prerender: true },
+    '/personer/**': { prerender: true },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: peopleData.map((p) => {
+        const slug = `${p.id}-${slugify(p.name, { lower: true, strict: true })}`
+        return `/personer/${slug}`
+      }),
+    },
+  },
 
   app: {
     head: {
