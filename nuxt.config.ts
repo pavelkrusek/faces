@@ -13,9 +13,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/devtools',
     '@pinia/nuxt',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/ui',
     '@nuxt/eslint',
