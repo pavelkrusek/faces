@@ -6,14 +6,22 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import type { Map as LeafletMap, Marker } from 'leaflet'
+import type { LatLngExpression, Map as LeafletMap, Marker } from 'leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { usePeopleStore } from '~/stores/people'
 import slugify from 'slugify'
+import { useMediaQuery } from '@vueuse/core'
 
 const mapRef = ref<HTMLDivElement | null>(null)
+let map: LeafletMap | null = null
+
 const store = usePeopleStore()
+
+const isMobile = useMediaQuery('(max-width: 640px)')
+
+const defaultCenter: LatLngExpression = [20, 0]
+const mobileCenter: LatLngExpression = [40, 15]
 
 delete (L.Icon.Default.prototype as any)._getIconUrl
 
@@ -31,10 +39,12 @@ onMounted(async () => {
     return
   }
 
+  const initial = isMobile.value ? mobileCenter : defaultCenter
+
   const bounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180))
 
-  const map: LeafletMap = L.map(mapRef.value, {
-    center: [20, 0],
+  map = L.map(mapRef.value, {
+    center: initial,
     zoom: 3,
     minZoom: 3,
     maxZoom: 10,
@@ -58,6 +68,13 @@ onMounted(async () => {
       navigateTo(`/personer/${slug}`)
     })
   })
+})
+
+watch(isMobile, (mobile) => {
+  if (map) {
+    const newCenter = mobile ? mobileCenter : defaultCenter
+    map.setView(newCenter, map.getZoom(), { animate: false })
+  }
 })
 </script>
 

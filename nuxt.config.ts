@@ -21,6 +21,10 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
 
+  runtimeConfig: {
+    public: { hubspotId: process.env.HUBSPOT_ID },
+  },
+
   ssr: true,
 
   app: {
