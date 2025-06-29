@@ -23,7 +23,7 @@ router.afterEach(() => {
 
 <template>
   <nav
-    class="w-full h-full bg-cyan-950 bg-opacity-80 backdrop-blur-sm px-4 flex items-center justify-between z-10"
+    class="w-full h-full bg-brand-red bg-opacity-80 backdrop-blur-sm px-4 flex items-center justify-between z-10"
   >
     <!-- Logo & project name -->
     <NuxtLink to="/" class="flex items-center">
@@ -42,6 +42,8 @@ router.afterEach(() => {
         <NuxtLink :to="l.to" class="hover:underline">{{ l.name }}</NuxtLink>
       </li>
     </ul>
+
+    <SharePopup />
 
     <!-- Mobile hamburger toggle -->
     <button

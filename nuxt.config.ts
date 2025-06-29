@@ -12,7 +12,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ['@nuxt/devtools', '@pinia/nuxt', '@nuxt/scripts', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/devtools',
+    '@pinia/nuxt',
+    '@nuxt/scripts',
+    '@nuxt/eslint',
+    ['@stefanobartoletti/nuxt-social-share', { ssr: false }],
+  ],
 
   runtimeConfig: {
     public: { hubspotId: process.env.HUBSPOT_ID },
