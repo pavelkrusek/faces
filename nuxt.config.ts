@@ -1,18 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-import tailwindcss from '@tailwindcss/vite'
 import peopleData from './data/people.json'
 import slugify from 'slugify'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css', 'leaflet/dist/leaflet.css'],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  css: ['~/assets/css/tailwind.css', 'leaflet/dist/leaflet.css'],
 
   modules: [
+    '@nuxtjs/tailwindcss',
     '@nuxt/devtools',
     '@pinia/nuxt',
     '@nuxt/scripts',
