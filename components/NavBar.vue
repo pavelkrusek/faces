@@ -43,8 +43,6 @@ router.afterEach(() => {
       </li>
     </ul>
 
-    <SharePopup />
-
     <!-- Mobile hamburger toggle -->
     <button
       class="md:hidden focus:outline-none"

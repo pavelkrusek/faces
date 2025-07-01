@@ -24,6 +24,9 @@ const links = [
         <slot />
       </div>
     </main>
+    <div class="fixed top-20 right-4 z-50 pointer-events-none">
+      <SharePopup />
+    </div>
   </div>
 </template>
 

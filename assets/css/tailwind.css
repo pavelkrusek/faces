@@ -1,7 +1,5 @@
-/*@import "tailwindcss/preflight.css" layer(base);*/
-
-/*@tailwind utilities;*/
 @import "tailwindcss";
-/*@tailwind base;*/
-/*@tailwind components;*/
-/*@tailwind utilities;*/
+
+@theme {
+    --color-brand-red: #CB2B3E;
+}

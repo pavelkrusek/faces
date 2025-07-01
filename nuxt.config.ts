@@ -14,8 +14,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/scripts',
     '@nuxt/eslint',
-    ['@stefanobartoletti/nuxt-social-share', { ssr: false }],
+    '@stefanobartoletti/nuxt-social-share',
   ],
+
+  socialShare: {
+    baseUrl: 'https://odensefaces.dagmarstudio.dk',
+  },
 
   runtimeConfig: {
     public: { hubspotId: process.env.HUBSPOT_ID },
